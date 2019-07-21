@@ -30,7 +30,7 @@ pub async fn main() -> Result<(), Error> {
         "Perf",
         "Detailed performance information",
         Row(vec![
-            TitledPanel("Bot Status", Dynamic("MMSTATE")),
+            TitledPanel("App Status", Dynamic("MMSTATE")),
             Panel(List(vec![
                 ListItem("BTC/USD", "Description", Dynamic("BTCUSDT")),
                 ListItem("ETH/USD", "Description", Dynamic("ETHUSDT")),
@@ -39,7 +39,7 @@ pub async fn main() -> Result<(), Error> {
         ]),
     );
     let scene = Dashboard(
-        "MM Bot - v1.0",
+        "LiveCrypto",
         vec![prices_page, perf_page],
     );
     //let scene = Spinner();

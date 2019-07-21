@@ -8,8 +8,9 @@ edition = "2018"
 bigdecimal = {version = "0.1.0", features = ["serde"] }
 env_logger = "0.6.1"
 failure = "0.1.5"
-log = "0.4.6"
 facade = { git = "ssh://git@github.com/DenisKolodin/facade", features = ["refresh"] }
+log = "0.4.6"
+naive = "0.1.1"
 runtime = { git = "https://github.com/rustasync/runtime" }
 runtime-tokio = { git = "https://github.com/rustasync/runtime" }
 serde = "1.0.94"
