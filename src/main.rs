@@ -4,7 +4,7 @@ mod binance;
 
 use facade::dsl::*;
 use failure::Error;
-use futures3::join;
+use futures::join;
 
 #[runtime::main(runtime_tokio::Tokio)]
 pub async fn main() -> Result<(), Error> {
@@ -12,15 +12,9 @@ pub async fn main() -> Result<(), Error> {
     log::info!("Initialization...");
     let mut control = facade::main()?;
 
-    let btc_panel = Panel(
-        Row(many![Fixed("BTCUSDT:"), Dynamic("BTCUSDT")]),
-    );
-    let eth_panel = Panel(
-        Row(many![Fixed("ETHUSDT:"), Dynamic("ETHUSDT")]),
-    );
-    let ltc_panel = Panel(
-        Row(many![Fixed("LTCUSDT:"), Dynamic("LTCUSDT")]),
-    );
+    let btc_panel = Panel(Row(many![Fixed("BTCUSDT:"), Dynamic("BTCUSDT")]));
+    let eth_panel = Panel(Row(many![Fixed("ETHUSDT:"), Dynamic("ETHUSDT")]));
+    let ltc_panel = Panel(Row(many![Fixed("LTCUSDT:"), Dynamic("LTCUSDT")]));
     let prices_page = Page(
         "Prices",
         "Detailed information about prices",
@@ -35,13 +29,10 @@ pub async fn main() -> Result<(), Error> {
                 ListItem("BTC/USD", "Description", Dynamic("BTCUSDT")),
                 ListItem("ETH/USD", "Description", Dynamic("ETHUSDT")),
                 ListItem("LTC/USD", "Description", Dynamic("LTCUSDT")),
-            ]))
+            ])),
         ]),
     );
-    let scene = Dashboard(
-        "LiveCrypto",
-        vec![prices_page, perf_page],
-    );
+    let scene = Dashboard("LiveCrypto", vec![prices_page, perf_page]);
     //let scene = Spinner();
     control.scene(scene);
 
